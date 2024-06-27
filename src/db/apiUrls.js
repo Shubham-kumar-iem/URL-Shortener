@@ -10,7 +10,6 @@ export async function getUrls(user_id) {
     console.error(error);
     throw new Error("Unable to load URLs");
   }
-
   return data;
 }
 
