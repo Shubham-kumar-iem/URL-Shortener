@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import {Copy, Download, LinkIcon, Trash} from "lucide-react";
-import {Link} from "react-router-dom";
-import {Button} from "./ui/button";
+import { Copy, Download, LinkIcon, Trash } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "./ui/button";
 import useFetch from "@/hooks/use-fetch";
-import {deleteUrl} from "@/db/apiUrls";
-import {BeatLoader} from "react-spinners";
+import { deleteUrl } from "@/db/apiUrls";
+import { BeatLoader } from "react-spinners";
 
-const LinkCard = ({url = [], fetchUrls}) => {
+const LinkCard = ({ url = [], fetchUrls }) => {
   const downloadImage = () => {
     const imageUrl = url?.qr;
     const fileName = url?.title; // Desired file name for the downloaded image
@@ -26,27 +26,27 @@ const LinkCard = ({url = [], fetchUrls}) => {
     document.body.removeChild(anchor);
   };
 
-  const {loading: loadingDelete, fn: fnDelete} = useFetch(deleteUrl, url.id);
+  const { loading: loadingDelete, fn: fnDelete } = useFetch(deleteUrl, url.id);
 
   return (
-    <div className="flex flex-col md:flex-row gap-5 border p-4 bg-gray-900 rounded-lg">
+    <div className="flex flex-col gap-5 p-4 bg-gray-900 border rounded-lg md:flex-row">
       <img
         src={url?.qr}
-        className="h-32 object-contain ring ring-blue-500 self-start"
+        className="self-start object-contain h-32 ring ring-blue-500"
         alt="qr code"
       />
       <Link to={`/link/${url?.id}`} className="flex flex-col flex-1">
-        <span className="text-3xl font-extrabold hover:underline cursor-pointer">
+        <span className="text-3xl font-extrabold cursor-pointer hover:underline">
           {url?.title}
         </span>
-        <span className="text-2xl text-blue-400 font-bold hover:underline cursor-pointer">
-          https://trimrr.in/{url?.custom_url ? url?.custom_url : url.short_url}
+        <span className="text-2xl font-bold text-blue-400 cursor-pointer hover:underline">
+        https://trimrr.vercel.app/{url?.custom_url ? url?.custom_url : url.short_url}
         </span>
-        <span className="flex items-center gap-1 hover:underline cursor-pointer">
+        <span className="flex items-center gap-1 cursor-pointer hover:underline">
           <LinkIcon className="p-1" />
           {url?.original_url}
         </span>
-        <span className="flex items-end font-extralight text-sm flex-1">
+        <span className="flex items-end flex-1 text-sm font-extralight">
           {new Date(url?.created_at).toLocaleString()}
         </span>
       </Link>
@@ -54,7 +54,7 @@ const LinkCard = ({url = [], fetchUrls}) => {
         <Button
           variant="ghost"
           onClick={() =>
-            navigator.clipboard.writeText(`https://trimrr.in/${url?.short_url}`)
+            navigator.clipboard.writeText(`https://trimrr.vercel.app/${url?.short_url}`)
           }
         >
           <Copy />

@@ -38,7 +38,7 @@ export async function getClicksForUrl(url_id) {
   }
 
   return data;
-}
+} 
 
 const parser = new UAParser();
 

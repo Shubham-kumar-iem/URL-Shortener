@@ -70,34 +70,34 @@ const LinkPage = () => {
       {(loading || loadingStats) && (
         <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
       )}
-      <div className="flex flex-col gap-8 sm:flex-row justify-between">
+      <div className="flex flex-col justify-between gap-8 sm:flex-row">
         <div className="flex flex-col items-start gap-8 rounded-lg sm:w-2/5">
-          <span className="text-6xl font-extrabold hover:underline cursor-pointer">
+          <span className="text-6xl font-extrabold cursor-pointer hover:underline">
             {url?.title}
           </span>
           <a
-            href={`https://trimrr.in/${link}`}
+            href={`https://trimrr.vercel.app/${link}`}
             target="_blank"
-            className="text-3xl sm:text-4xl text-blue-400 font-bold hover:underline cursor-pointer"
+            className="text-3xl font-bold text-blue-400 cursor-pointer sm:text-4xl hover:underline"
           >
-            https://trimrr.in/{link}
+            https://trimrr.vercel.app/{link}
           </a>
           <a
             href={url?.original_url}
             target="_blank"
-            className="flex items-center gap-1 hover:underline cursor-pointer"
+            className="flex items-center gap-1 cursor-pointer hover:underline"
           >
             <LinkIcon className="p-1" />
             {url?.original_url}
           </a>
-          <span className="flex items-end font-extralight text-sm">
+          <span className="flex items-end text-sm font-extralight">
             {new Date(url?.created_at).toLocaleString()}
           </span>
           <div className="flex gap-2">
             <Button
               variant="ghost"
               onClick={() =>
-                navigator.clipboard.writeText(`https://trimrr.in/${link}`)
+                navigator.clipboard.writeText(`https://trimrr.vercel.app/${link}`)
               }
             >
               <Copy />
@@ -123,7 +123,7 @@ const LinkPage = () => {
           </div>
           <img
             src={url?.qr}
-            className="w-full self-center sm:self-start ring ring-blue-500 p-1 object-contain"
+            className="self-center object-contain w-full p-1 sm:self-start ring ring-blue-500"
             alt="qr code"
           />
         </div>
